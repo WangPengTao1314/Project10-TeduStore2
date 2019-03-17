@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+  <!--  -->
+<mapper namespace="cn.tedu.store.mapper.CartMapper">
+  <insert id="insertCart" parameterType="cn.tedu.store.bean.Cart">
+  	INSERT INTO 
+  		t_cart 
+  VALUES(
+  	null,
+  	#{uid},
+  	#{goodsId},
+  	#{count},
+  	#{createdUser},
+  	#{createdTime},
+  	#{modifiedUser},
+  	#{modifiedTime})
+  </insert>
+  <select id="selectCartByUid" resultType="cn.tedu.store.bean.CartVo">
+  	SELECT
+  		tc.id as id,
+  		tc.uid as uid,
+  		tc.goods_id as goodsId,
+  		image,
+  		title,
+  		price,
+  		count
+  	FROM
+  		t_cart tc  
+  	JOIN
+  	 t_goods tg
+  	on
+  		tc.goods_id=tg.id
+  	where
+  		tc.uid=#{uid}
+  
+  </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

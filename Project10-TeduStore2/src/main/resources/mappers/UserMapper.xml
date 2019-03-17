@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+  <!--  -->
+<mapper namespace="cn.tedu.store.mapper.UserMapper">
+<insert id="insert" parameterType="cn.tedu.store.bean.User">
+	INSERT INTO	t_user values(
+	null, #{username},#{password},#{email},
+	#{phone},#{image},#{gender},#{created_user},
+ 	#{created_time},#{modified_user},#{modified_time})
+</insert>
+<select id="select"   
+	resultType="cn.tedu.store.bean.User">
+select*from t_user where username=#{username}
+</select>
+<!--通过ID查询当前用户  -->
+<select id="selectById" parameterType="int" resultType="cn.tedu.store.bean.User">
+select * from t_user where id=#{id}
+</select>
+<!--  -->
+<select id="selectByEmail" resultType="java.lang.Integer">
+select count(email) from t_user where email=#{email}
+</select>
+
+<select id="selectByPhone" resultType="java.lang.Integer">
+select count(phone) from t_user where phone =#{phone}
+</select>
+<!-- update 的动态SQL语句修改 -->
+<update id="update" parameterType="cn.tedu.store.bean.User">
+update t_user set
+	<if test="username!=null">username=#{username},</if>
+	<if test="password!=null">password=#{password},</if>
+	<if test="gender!=null">gender=#{gender},</if>
+	<if test="email!=null">email=#{email},</if>
+	modified_user=#{modified_user},  
+	modified_time=#{modified_time}
+	where id=#{id}
+</update>
+<!-- 添加用户收货地址 -->
+<!-- 修改用户的图像 -->
+<update id="updateImageById" >
+UPDATE t_user SET image=#{image} where id=#{id}
+</update>
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

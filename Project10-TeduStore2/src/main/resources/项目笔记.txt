@@ -1,0 +1,48 @@
+实现SQL语句的动态操作
+
+修改收获地址时回显数据
+
+// 对数据库的编程操作
+
+pl/sql
+delimiter $$
+created procedure updateItem (poid int);
+begin
+ 	update
+ 	 t_orderitem
+ 	set
+ 	 paymentstatus=1
+ 	 where
+ 	  orderid=poid
+ end $$
+调用格式:
+ call 方法名(updateItem)(传送的参数);
+
+
+delimiter $$ 
+create procedure updateBmi(nid int)
+begin
+ update bmi set ename="王二" where id=nid ;
+end$$
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+AOP:不改变
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
